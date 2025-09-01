@@ -17,13 +17,6 @@ import {
 import { navigationMenuTriggerStyle } from "@/components/ui/navigation-menu";
 import { Calendar, MenuIcon } from "lucide-react";
 import Link from "next/link";
-import {
-  SignedOut,
-  SignUpButton,
-  SignedIn,
-  UserButton,
-  SignInButton,
-} from "@clerk/nextjs";
 
 const navItems = [
   { name: "Why Choose Us", href: "#why-choose" },
@@ -90,23 +83,19 @@ const Navbar = () => {
                   ))}
                 </div>
                 <div className="flex flex-col gap-y-2 w-full">
-                  <SignedOut>
                     <NavigationMenuItem className="w-full">
                       <Button asChild className="w-full">
-                        <SignInButton>Login</SignInButton>
+                        <Link href="/login">Login</Link>
                       </Button>
                     </NavigationMenuItem>
                     <NavigationMenuItem className="w-full">
-                      <Button asChild variant="ghost" className="w-full">
-                        <SignUpButton></SignUpButton>
+                      <Button variant="ghost" className="w-full">
+                        <Link href="/signup">Signup</Link>
                       </Button>
                     </NavigationMenuItem>
-                  </SignedOut>
-                  <SignedIn>
-                    <Button asChild>
+                    {/* <Button>
                       <Link href="/dashboard">Dashboard</Link>
-                    </Button>
-                  </SignedIn>
+                    </Button> */}
                 </div>
               </NavigationMenuList>
             </NavigationMenu>
@@ -114,24 +103,20 @@ const Navbar = () => {
         </Sheet>
 
         <div className="hidden lg:flex space-x-2">
-          <SignedOut>
             <Button asChild>
-              <SignInButton>Login</SignInButton>
+              <Link href="/login">Login</Link>
             </Button>
-            <Button asChild variant="outline">
-              <SignUpButton></SignUpButton>
+            <Button variant="outline">
+              <Link href="/signup">Signup</Link>
             </Button>
-          </SignedOut>
         </div>
 
-        <SignedIn>
-          <div className="flex flex-row gap-x-4 items-center">
+          {/* <div className="flex flex-row gap-x-4 items-center">
             <UserButton />
             <Button asChild className="hidden lg:flex">
               <Link href="/dashboard">Dashboard</Link>
             </Button>
-          </div>
-        </SignedIn>
+          </div> */}
       </div>
     </>
   );
