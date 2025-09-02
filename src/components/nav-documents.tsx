@@ -24,12 +24,13 @@ import {
   SidebarMenuItem,
   useSidebar,
 } from "@/components/ui/sidebar"
+import SidebarNavigationLink from "./sidebar-navigation-link"
 
 export function NavDocuments({
   items,
 }: {
   items: {
-    name: string
+    title: string
     url: string
     icon: Icon
   }[]
@@ -41,12 +42,9 @@ export function NavDocuments({
       <SidebarGroupLabel>Documents</SidebarGroupLabel>
       <SidebarMenu>
         {items.map((item) => (
-          <SidebarMenuItem key={item.name}>
+          <SidebarMenuItem key={item.title}>
             <SidebarMenuButton asChild>
-              <a href={item.url}>
-                <item.icon />
-                <span>{item.name}</span>
-              </a>
+              <SidebarNavigationLink item={item} />
             </SidebarMenuButton>
             <DropdownMenu>
               <DropdownMenuTrigger asChild>

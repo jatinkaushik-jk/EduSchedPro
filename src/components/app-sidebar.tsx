@@ -1,7 +1,7 @@
 "use client"
-
 import * as React from "react"
 import {
+  Icon,
   IconCamera,
   IconChartBar,
   IconDashboard,
@@ -9,7 +9,6 @@ import {
   IconFileAi,
   IconFileDescription,
   IconFileWord,
-  IconFolder,
   IconHelp,
   IconInnerShadowTop,
   IconListDetails,
@@ -32,6 +31,8 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from "@/components/ui/sidebar"
+import { CalendarDaysIcon } from "lucide-react"
+import Link from "next/link"
 
 const data = {
   user: {
@@ -42,11 +43,11 @@ const data = {
   navMain: [
     {
       title: "Dashboard",
-      url: "#",
+      url: "/dashboard",
       icon: IconDashboard,
     },
     {
-      title: "Lifecycle",
+      title: "Time Table",
       url: "#",
       icon: IconListDetails,
     },
@@ -56,12 +57,12 @@ const data = {
       icon: IconChartBar,
     },
     {
-      title: "Projects",
+      title: "Schedule",
       url: "#",
-      icon: IconFolder,
+      icon: CalendarDaysIcon as Icon,
     },
     {
-      title: "Team",
+      title: "Faculty",
       url: "#",
       icon: IconUsers,
     },
@@ -117,7 +118,7 @@ const data = {
   navSecondary: [
     {
       title: "Settings",
-      url: "#",
+      url: "/settings",
       icon: IconSettings,
     },
     {
@@ -133,17 +134,17 @@ const data = {
   ],
   documents: [
     {
-      name: "Data Library",
+      title: "Data Library",
       url: "#",
       icon: IconDatabase,
     },
     {
-      name: "Reports",
+      title: "Reports",
       url: "#",
       icon: IconReport,
     },
     {
-      name: "Word Assistant",
+      title: "Word Assistant",
       url: "#",
       icon: IconFileWord,
     },
@@ -160,10 +161,10 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
               asChild
               className="data-[slot=sidebar-menu-button]:!p-1.5"
             >
-              <a href="#">
+              <Link href="/dashboard">
                 <IconInnerShadowTop className="!size-5" />
                 <span className="text-base font-semibold">EduSchedPro</span>
-              </a>
+              </Link>
             </SidebarMenuButton>
           </SidebarMenuItem>
         </SidebarMenu>
