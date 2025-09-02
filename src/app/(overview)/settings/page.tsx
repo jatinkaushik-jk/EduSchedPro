@@ -25,10 +25,8 @@ import {
   Phone,
   Mail,
   MapPin,
-  Calendar,
   Lock,
   Key,
-  Smartphone,
   Monitor
 } from 'lucide-react';
 
@@ -387,8 +385,6 @@ const EduSchedulerSettings = () => {
                 disabled
               />
             </div>
-          </div>
-          <div className="grid md:grid-cols-1 gap-6">
             <div className="space-y-2">
               <Label htmlFor="joinDate">Join Date</Label>
               <Input 
@@ -963,7 +959,6 @@ const EduSchedulerSettings = () => {
           )}
           {activeSection === 'main' && (
             <div>
-              <h1 className="text-3xl font-bold mb-2">Settings</h1>
               <p className="text-muted-foreground">Manage your account settings, security, and preferences</p>
             </div>
           )}
