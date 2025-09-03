@@ -77,7 +77,7 @@ export default function SettingsMain({
 
           <Card
             className="hover:shadow-lg transition-shadow cursor-pointer"
-            onClick={() => setActiveSection("billing")}
+            // onClick={() => setActiveSection("billing")}
           >
             <CardHeader>
               <div className="flex items-center space-x-3">
@@ -95,7 +95,10 @@ export default function SettingsMain({
               </div>
             </CardHeader>
             <CardContent className="flex justify-between items-center">
-              <ConfigureBtn />
+              {/* <ConfigureBtn /> */}
+              <Badge variant="secondary" className="text-gray-500">
+                Coming Soon
+              </Badge>
               <Badge
                 variant="outline"
                 className="text-green-600 border-green-200"
@@ -139,7 +142,7 @@ export default function SettingsMain({
 
           <Card
             className="hover:shadow-lg transition-shadow cursor-pointer"
-            onClick={() => setActiveSection("general")}
+            // onClick={() => setActiveSection("general")}
           >
             <CardHeader>
               <div className="flex items-center space-x-3">
@@ -155,7 +158,10 @@ export default function SettingsMain({
               </div>
             </CardHeader>
             <CardContent>
-              <ConfigureBtn />
+              {/* <ConfigureBtn /> */}
+              <Badge variant="secondary" className="text-gray-500">
+                Coming Soon
+              </Badge>
             </CardContent>
           </Card>
         </div>
@@ -171,7 +177,7 @@ export default function SettingsMain({
         <div className="grid md:grid-cols-2 gap-6">
           <Card
             className="hover:shadow-lg transition-shadow cursor-pointer"
-            onClick={() => setActiveSection("security")}
+            // onClick={() => setActiveSection("security")}
           >
             <CardHeader>
               <div className="flex items-center space-x-3">
@@ -187,7 +193,10 @@ export default function SettingsMain({
               </div>
             </CardHeader>
             <CardContent>
-              <ConfigureBtn />
+              {/* <ConfigureBtn /> */}
+              <Badge variant="secondary" className="text-gray-500">
+                Coming Soon
+              </Badge>
             </CardContent>
           </Card>
 
