@@ -6,18 +6,39 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import Image from "next/image"
 import Link from "next/link"
+import { useState } from "react"
 
 export function LoginForm({
   className,
   ...props
 }: React.ComponentProps<"div">) {
 
+  const [error, setError] = useState<string | null>(null);
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     // Handle form submission
     const formData = new FormData(event.currentTarget);
-    console.log(Object.fromEntries(formData.entries()));
+    const loginData = Object.fromEntries(formData.entries());
+    console.log(loginData);
+    try {
+      const response = await fetch("/api/auth/login", {
+        method: "POST",
+        body: JSON.stringify(loginData),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      console.log("Response:", response);
+      const data = await response.json();
+      if (response.ok) {
+        console.log(data);
+      } else {
+        setError(data.message || "Internal server error");
+      }
+    } catch (error) {
+      console.log("Error:", error);
+    }
   };
 
   return (
@@ -31,6 +52,7 @@ export function LoginForm({
                 <p className="text-muted-foreground text-balance">
                   Login to your EduSchedPro account
                 </p>
+                {error && <p className="mt-2 text-sm text-red-600">{error}</p>}
               </div>
               <div className="grid gap-3">
                 <Label htmlFor="email">Email</Label>

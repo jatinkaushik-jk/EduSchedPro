@@ -15,16 +15,38 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { useState } from "react";
 
 export function SignupForm({
   className,
   ...props
 }: React.ComponentProps<"div">) {
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+
+   const [error, setError] = useState<string | null>(null);
+
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     // Handle form submission
     const formData = new FormData(event.currentTarget);
-    console.log(Object.fromEntries(formData.entries()));
+    const signupData = Object.fromEntries(formData.entries());
+    try {
+      const response = await fetch("/api/auth/signup", {
+        method: "POST",
+        body: JSON.stringify(signupData),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      console.log("Response:", response);
+      const data = await response.json();
+      if (response.ok) {
+        console.log(data);
+      } else {
+        setError(data.message || "Internal server error");
+      }
+    } catch (error) {
+      console.log("Error:", error);
+    }
   };
 
   return (
@@ -38,6 +60,7 @@ export function SignupForm({
                 <p className="text-muted-foreground text-balance">
                   Create an account on EduSchedPro
                 </p>
+                {error && <p className="mt-2 text-sm text-red-600">{error}</p>}
               </div>
               <div className="grid gap-3">
                 <Label htmlFor="email">Email</Label>
