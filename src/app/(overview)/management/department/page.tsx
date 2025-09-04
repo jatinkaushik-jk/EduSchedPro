@@ -224,7 +224,7 @@ const DepartmentManagement: React.FC = () => {
   }
 
   return (
-    <div className="space-y-6 p-6">
+    <div className="space-y-6 py-6">
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
