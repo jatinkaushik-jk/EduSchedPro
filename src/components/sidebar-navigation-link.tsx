@@ -13,9 +13,9 @@ const SidebarNavigationLink = ({
   };
   linkProps?: React.ComponentProps<typeof Link>;
 }) => {
-  const currentPath = usePathname().substring(1).split("/");
+  const currentPath = usePathname();
   return (
-    <Link href={item.url} {...linkProps} data-active={currentPath.includes(item.url.substring(1))}>
+    <Link href={item.url} {...linkProps} data-active={currentPath.startsWith(item.url)}>
       {item.icon && <item.icon />}
       <span>{item.title}</span>
     </Link>

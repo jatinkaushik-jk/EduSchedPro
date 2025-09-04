@@ -2,18 +2,14 @@
 import * as React from "react"
 import {
   Icon,
-  IconCamera,
-  IconChartBar,
+  IconBlocks,
   IconDashboard,
   IconDatabase,
-  IconFileAi,
-  IconFileDescription,
   IconFileWord,
   IconHelp,
   IconInnerShadowTop,
   IconListDetails,
   IconReport,
-  IconSearch,
   IconSettings,
   IconUsers,
 } from "@tabler/icons-react"
@@ -31,8 +27,9 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from "@/components/ui/sidebar"
-import { CalendarDaysIcon } from "lucide-react"
+import { BookOpenTextIcon, CalendarDaysIcon, Layers2Icon, LayersIcon } from "lucide-react"
 import Link from "next/link"
+import { NavManagement } from "./nav-management"
 
 const data = {
   user: {
@@ -48,71 +45,40 @@ const data = {
     },
     {
       title: "Time Table",
-      url: "#",
+      url: "/timetable-generation",
       icon: IconListDetails,
-    },
-    {
-      title: "Analytics",
-      url: "#",
-      icon: IconChartBar,
     },
     {
       title: "Schedule",
       url: "#",
       icon: CalendarDaysIcon as Icon,
     },
+  ],
+  management: [
     {
       title: "Faculty",
-      url: "#",
-      icon: IconUsers,
-    },
-  ],
-  navClouds: [
-    {
-      title: "Capture",
-      icon: IconCamera,
-      isActive: true,
-      url: "#",
-      items: [
-        {
-          title: "Active Proposals",
-          url: "#",
-        },
-        {
-          title: "Archived",
-          url: "#",
-        },
-      ],
+      url: "/management/faculty",
+      icon: IconUsers as Icon,
     },
     {
-      title: "Proposal",
-      icon: IconFileDescription,
-      url: "#",
-      items: [
-        {
-          title: "Active Proposals",
-          url: "#",
-        },
-        {
-          title: "Archived",
-          url: "#",
-        },
-      ],
+      title: "Department",
+      url: "/management/department",
+      icon: Layers2Icon as Icon,
     },
     {
-      title: "Prompts",
-      icon: IconFileAi,
-      url: "#",
-      items: [
-        {
-          title: "Active Proposals",
-          url: "#",
-        },
-        {
-          title: "Archived",
-          url: "#",
-        },
-      ],
+      title: "Subject",
+      url: "/management/subject",
+      icon: BookOpenTextIcon as Icon,
+    },
+    {
+      title: "Classroom",
+      url: "/management/classroom",
+      icon: IconBlocks,
+    },
+    {
+      title: "Batch",
+      url: "/management/batch",
+      icon: LayersIcon as Icon,
     },
   ],
   navSecondary: [
@@ -125,11 +91,6 @@ const data = {
       title: "Get Help",
       url: "#",
       icon: IconHelp,
-    },
-    {
-      title: "Search",
-      url: "#",
-      icon: IconSearch,
     },
   ],
   documents: [
@@ -171,6 +132,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
       </SidebarHeader>
       <SidebarContent>
         <NavMain items={data.navMain} />
+        <NavManagement items={data.management} />
         <NavDocuments items={data.documents} />
         <NavSecondary items={data.navSecondary} className="mt-auto" />
       </SidebarContent>
