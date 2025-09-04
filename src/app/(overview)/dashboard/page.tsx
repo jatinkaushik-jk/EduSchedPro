@@ -437,7 +437,7 @@ const Dashboard: React.FC = () => {
         </CardHeader>
         <CardContent>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-            <Link href="/faculty-management">
+            <Link href="/management/faculty">
               <Card className="hover:shadow-md transition-shadow cursor-pointer">
                 <CardContent className="p-4 text-center">
                   <Users className="h-8 w-8 mx-auto mb-2 text-blue-600" />
@@ -447,7 +447,7 @@ const Dashboard: React.FC = () => {
               </Card>
             </Link>
             
-            <Link href="/subject-management">
+            <Link href="/management/subject">
               <Card className="hover:shadow-md transition-shadow cursor-pointer">
                 <CardContent className="p-4 text-center">
                   <BookOpen className="h-8 w-8 mx-auto mb-2 text-green-600" />
@@ -457,7 +457,7 @@ const Dashboard: React.FC = () => {
               </Card>
             </Link>
             
-            <Link href="/classroom-management">
+            <Link href="/management/classroom">
               <Card className="hover:shadow-md transition-shadow cursor-pointer">
                 <CardContent className="p-4 text-center">
                   <Building2 className="h-8 w-8 mx-auto mb-2 text-purple-600" />
