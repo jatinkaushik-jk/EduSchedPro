@@ -33,6 +33,7 @@ import {
 } from 'lucide-react';
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 
+
 // TypeScript interfaces for timetable generation
 interface TimetableEntry {
   day: string;
@@ -159,7 +160,7 @@ const TimetableGeneration: React.FC = () => {
       maxIterations: 1000,
       populationSize: 100,
       mutationRate: 0.1,
-      crossoverRate: 0.8,
+      crossoverRate: 0.8, // no field in frontend yet
       timeLimit: 300 // seconds
     },
     constraints: {
@@ -205,7 +206,7 @@ const TimetableGeneration: React.FC = () => {
           schedule: [], // Will be populated with actual schedule entries
           status: 'active',
           conflicts: [
-            { type: 'FACULTY_DOUBLE_BOOKING', description: 'Dr. Smith scheduled in two classrooms at MON-3', severity: 'high' }
+            { type: 'FACULTY_DOUBLE_BOOKING', description: 'Dr. Smith scheduled in two classrooms at MON-3', severity: 'high' },
           ],
           optimizationScore: 87,
           generatedBy: { _id: '1', name: 'Dr. Jatin Kaushik' },
@@ -406,6 +407,10 @@ const TimetableGeneration: React.FC = () => {
       default: return 'text-gray-600';
     }
   };
+
+  // useEffect(()=>{
+  //   runTimetableGenerationDemo().then((data) => console.log(data));
+  // },[])
 
   if (loading) {
     return (
@@ -875,8 +880,8 @@ const TimetableGeneration: React.FC = () => {
                               <AlertCircle className="mr-1 h-3 w-3" />
                               {timetable.conflicts.length} conflicts
                             </Badge>
-                            <div className="text-xs text-muted-foreground mt-1">
-                              {timetable.conflicts.filter(c => c.severity === 'high').length} high priority
+                            <div className={`text-xs text-muted-foreground mt-1 ${timetable.conflicts.filter(c => c.severity === 'high').length > 0 ? getConflictSeverityColor("high"): (timetable.conflicts.filter(c => c.severity === 'medium').length > 0 ? getConflictSeverityColor("medium"): getConflictSeverityColor("low"))}`}>
+                              {timetable.conflicts.filter(c => c.severity === 'high').length > 0 ? timetable.conflicts.filter(c => c.severity === 'high').length + " high priority" : (timetable.conflicts.filter(c => c.severity === 'medium').length > 0 ? timetable.conflicts.filter(c => c.severity === 'medium').length + " medium priority": timetable.conflicts.filter(c => c.severity === 'low').length+ " low priority")}
                             </div>
                           </div>
                         ) : (
